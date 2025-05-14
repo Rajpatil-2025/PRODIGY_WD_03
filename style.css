@@ -12,6 +12,65 @@ body {
 .container {
   text-align: center;
 }
+/* Popup styles */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup-content {
+  background: #1e1e2f;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 20px #000;
+  animation: scaleIn 0.4s ease forwards;
+}
+
+.popup-content h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.popup-content button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: #03dac6;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-content button:hover {
+  background: #00bfa5;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
 
 .board {
   display: grid;

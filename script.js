@@ -16,6 +16,7 @@ const winPatterns = [
   [0,4,8], [2,4,6]
 ];
 
+// Initialize the game board
 function createBoard() {
   board.innerHTML = "";
   gameState = ["", "", "", "", "", "", "", "", ""];
@@ -28,10 +29,12 @@ function createBoard() {
     const cell = document.createElement("div");
     cell.classList.add("cell");
     cell.dataset.index = i;
+    cell.addEventListener("click", handleCellClick);
     board.appendChild(cell);
   }
 }
 
+// Check for a winning condition
 function checkWin() {
   return winPatterns.some(pattern => {
     const [a, b, c] = pattern;
@@ -43,6 +46,7 @@ function checkWin() {
   });
 }
 
+// Handle clicks on cells
 function handleCellClick(e) {
   const index = e.target.dataset.index;
   if (!gameActive || gameState[index] !== "") return;
@@ -62,22 +66,21 @@ function handleCellClick(e) {
   }
 }
 
+// Show the result popup
 function showPopup(message) {
   popupMessage.textContent = message;
   popup.classList.remove("hidden");
 }
 
+// Reset game from popup
 function hidePopup() {
   popup.classList.add("hidden");
   createBoard();
 }
 
+// Event listeners
 resetBtn.addEventListener("click", createBoard);
 playAgainBtn.addEventListener("click", hidePopup);
-board.addEventListener("click", function (e) {
-  if (e.target.classList.contains("cell")) {
-    handleCellClick(e);
-  }
-});
 
+// Start game on page load
 createBoard();
